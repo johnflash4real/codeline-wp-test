@@ -13,8 +13,12 @@ function create_film_post_type() {
                 'name' => __( 'Films' ),
                 'singular_name' => __( 'Film' )
             ),
+            'hierarchical'=>false,
             'public' => true,
             'has_archive' => true,
+            'show_in_menu'=>true,
+            'show_ui'=>true,
+            'show_in_nav_menus'=>true,
             'rewrite' => array('slug' => 'films'),
         )
     );
