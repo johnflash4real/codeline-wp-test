@@ -61,3 +61,26 @@ function create_film_post_type() {
 }
 
 add_action( 'init', 'create_film_post_type' );
+
+
+function codeline_latest_films_shortcode($atts){
+    $args = array(
+        'post_type'=>'film',
+        'posts_per_page'=>5
+    );
+    $filmsQuery = new WP_Query($args);
+    if(!$filmsQuery->have_posts())
+        return "<div class='alert alert-info'>No films found</div>";
+
+    $filmsArr = $filmsQuery->get_posts();
+    $output = "<ul>";
+    foreach ($filmsArr as $film)
+        $output .= "<li><a href='".get_permalink($film)."'>{$film->post_title}</a></li>";
+
+
+    $output .="</ul>";
+    return $output;
+
+
+}
+add_shortcode('latest_films','codeline_latest_films_shortcode');
