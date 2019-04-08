@@ -11,6 +11,6 @@
  Text Domain:  unite-child
 */
 
-#single-film-detail-div > div{
+.film-detail-div > div{
     margin-bottom: 10px;
 }

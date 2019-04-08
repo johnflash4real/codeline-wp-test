@@ -13,6 +13,7 @@ function create_film_post_type() {
                 'name' => __( 'Films' ),
                 'singular_name' => __( 'Film' )
             ),
+            'supports'=>array('title','editor','excerpt'),
             'hierarchical'=>false,
             'public' => true,
             'has_archive' => true,
@@ -84,3 +85,39 @@ function codeline_latest_films_shortcode($atts){
 
 }
 add_shortcode('latest_films','codeline_latest_films_shortcode');
+
+
+function codeline_films_after_title(){
+    global $post;
+    if (get_post_type()=='film'):?>
+
+    <div class="row film-detail-div">
+            <div class="col-md-6">
+                <b><i class="fa fa-globe"></i> Country:</b>
+                <?php
+                echo get_the_term_list($post->ID,'country','<span class="label label-info">','','</span>');
+                ?>
+            </div>
+
+            <div class="col-md-6">
+                <b><i class="fa fa-file"></i> Genre:</b>
+                <?php
+                echo get_the_term_list($post->ID,'genre','<span class="label label-info">','','</span>');
+                ?>
+            </div>
+
+            <div class="col-md-6">
+                <b><i class="fa fa-ticket"></i> Ticket Price:</b>
+                $<?php echo get_field('ticket_price',$post->ID); ?>
+            </div>
+
+            <div class="col-md-6">
+                <b><i class="fa fa-ticket"></i> Release Date:</b>
+                <?php echo get_field('release_date',$post->ID); ?>
+            </div>
+
+
+        </div>
+<?php endif;
+}
+add_action('unite_after_post_loop','codeline_films_after_title');
