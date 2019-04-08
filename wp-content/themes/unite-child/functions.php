@@ -20,6 +20,40 @@ function create_film_post_type() {
     );
 
 
+
+    register_taxonomy('genre','film',
+        array(
+            'label'=>__('Genre'),
+            'rewrite'=> array('slug'=>'genre'),
+            'hierarchical'=>false
+        )
+    );
+
+    register_taxonomy('country','film',
+        array(
+            'label'=>__('Country'),
+            'rewrite'=> array('slug'=>'country'),
+            'hierarchical'=>false
+        )
+    );
+
+    register_taxonomy('year','film',
+        array(
+            'label'=>__('Year'),
+            'rewrite'=> array('slug'=>'genre'),
+            'hierarchical'=>false
+        )
+    );
+
+    register_taxonomy('actors','film',
+        array(
+            'label'=>__('Actors'),
+            'rewrite'=> array('slug'=>'actors'),
+            'hierarchical'=>false
+        )
+    );
+
+
 }
 
 add_action( 'init', 'create_film_post_type' );
