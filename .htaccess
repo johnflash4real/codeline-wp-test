@@ -1,0 +1,12 @@
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /codeline/codeline-wp-test/
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /codeline/codeline-wp-test/index.php [L]
+</IfModule>
+
+# END WordPress
